@@ -1,4 +1,5 @@
 # 🧠 The Mind
+# FOR A VIDEO DEMO OF THIS PROJECT PLEASE VISIT: https://www.youtube.com/watch?v=7se-505jxA4
 
 > *An interactive cosmic horror experience built with Babylon.js and the Web Audio API.*
 

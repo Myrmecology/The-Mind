@@ -10,15 +10,15 @@
 }
 
 :root {
-  --color-void:        #050008;
-  --color-pulse-a:     #7b00ff;
-  --color-pulse-b:     #00ffaa;
-  --color-pulse-c:     #ff003c;
-  --color-bile:        #aaff00;
+  --color-void:        #0733e1;
+  --color-pulse-a:     #ff6f00;
+  --color-pulse-b:     #2600ff;
+  --color-pulse-c:     #dff70a;
+  --color-bile:        #0be13d;
   --color-crimson:     #8b0000;
   --color-sickly:      #4dff91;
   --color-text-main:   #e0d0ff;
-  --color-text-dim:    #5a3a7a;
+  --color-text-dim:    #f606aa;
   --color-sanity-full: #00ffaa;
   --color-sanity-mid:  #ffaa00;
   --color-sanity-low:  #ff003c;
@@ -88,7 +88,6 @@ html, body {
   font-weight: bold;
   letter-spacing: 10px;
   fill: var(--color-text-main);
-  text-shadow: none;
   animation: titlePulse 3s ease-in-out infinite;
 }
 
@@ -153,6 +152,118 @@ html, body {
   animation: squiggleColor 3.5s linear infinite alternate-reverse;
 }
 
+/* ----- Chaos Block ----------------------------------------- */
+#chaos-block {
+  position: absolute;
+  bottom: 32px;
+  left: 24px;
+  width: 220px;
+  pointer-events: all;
+}
+
+#chaos-label {
+  font-family: var(--font-weird);
+  font-size: 11px;
+  letter-spacing: 6px;
+  color: var(--color-text-dim);
+  margin-bottom: 4px;
+  animation: labelWobble 3s ease-in-out infinite reverse;
+}
+
+#chaos-svg {
+  width: 100%;
+  overflow: visible;
+  display: block;
+  margin-bottom: 6px;
+}
+
+#chaos-squiggle {
+  animation: squiggleColor 2.5s linear infinite;
+}
+
+#chaos-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  outline: none;
+  cursor: none;
+  position: relative;
+}
+
+#chaos-slider::-webkit-slider-runnable-track {
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--color-pulse-b),
+    var(--color-pulse-a),
+    var(--color-pulse-c)
+  );
+  border-radius: 2px;
+  box-shadow: 0 0 8px var(--color-pulse-a);
+}
+
+#chaos-slider::-moz-range-track {
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--color-pulse-b),
+    var(--color-pulse-a),
+    var(--color-pulse-c)
+  );
+  border-radius: 2px;
+}
+
+#chaos-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-pulse-c);
+  box-shadow: 0 0 10px var(--color-pulse-c), 0 0 20px var(--color-pulse-a);
+  margin-top: -6px;
+  animation: thumbPulse 1s ease-in-out infinite;
+}
+
+#chaos-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-pulse-c);
+  border: none;
+  box-shadow: 0 0 10px var(--color-pulse-c);
+}
+
+/* ----- Secret Code Display --------------------------------- */
+#secret-code-display {
+  position: absolute;
+  bottom: 32px;
+  right: 24px;
+  font-family: var(--font-weird);
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--color-text-dim);
+  text-align: right;
+  pointer-events: none;
+  opacity: 0.5;
+  animation: labelWobble 4s ease-in-out infinite;
+}
+
+/* ----- Constellation Hint ---------------------------------- */
+#constellation-hint {
+  position: absolute;
+  bottom: 72px;
+  right: 24px;
+  font-family: var(--font-weird);
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--color-text-dim);
+  pointer-events: none;
+  animation: timerFlicker 7s step-end infinite;
+}
+
 /* ----- Whisper Text ---------------------------------------- */
 #whisper-text {
   position: absolute;
@@ -168,7 +279,6 @@ html, body {
   opacity: 0;
   white-space: nowrap;
   text-transform: uppercase;
-  animation: none;
   z-index: 60;
   filter: blur(0px);
 }
@@ -185,6 +295,7 @@ html, body {
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: rgba(5, 0, 8, 0.0);
@@ -196,7 +307,7 @@ html, body {
 
 #mind-break-overlay.active {
   opacity: 1;
-  background: rgba(5, 0, 8, 0.85);
+  background: rgba(5, 0, 8, 0.92);
   pointer-events: all;
 }
 
@@ -212,13 +323,205 @@ html, body {
   font-weight: bold;
   letter-spacing: 14px;
   fill: var(--color-pulse-c);
-  filter: url(#glitch);
   animation: breakPulse 0.8s ease-in-out infinite;
+}
+
+#break-subtext {
+  font-family: var(--font-weird);
+  font-size: 16px;
+  letter-spacing: 6px;
+  fill: var(--color-text-dim);
+  animation: labelWobble 2s ease-in-out infinite;
 }
 
 #break-squiggle-a,
 #break-squiggle-b {
   animation: squiggleColor 1.2s linear infinite;
+}
+
+/* ----- Reset Button ---------------------------------------- */
+#reset-btn {
+  margin-top: 32px;
+  padding: 14px 40px;
+  font-family: var(--font-weird);
+  font-size: 13px;
+  letter-spacing: 6px;
+  color: var(--color-text-main);
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: none;
+  position: relative;
+  text-transform: uppercase;
+  animation: resetPulse 1.5s ease-in-out infinite;
+}
+
+#reset-btn::before,
+#reset-btn::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--color-pulse-a),
+    var(--color-pulse-b),
+    var(--color-pulse-c)
+  );
+  animation: squiggleShift 2s linear infinite;
+}
+
+#reset-btn::before { top: 0; }
+#reset-btn::after  { bottom: 0; }
+
+#reset-btn:hover {
+  color: var(--color-pulse-c);
+  text-shadow: 0 0 12px var(--color-pulse-c), 0 0 24px var(--color-pulse-a);
+}
+
+/* ----- Name Entry Screen ----------------------------------- */
+#name-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-void);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1.2s ease;
+}
+
+#name-screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#name-screen-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 500px;
+  max-width: 90vw;
+}
+
+#name-svg-top,
+#name-svg-bot {
+  width: 100%;
+  overflow: visible;
+}
+
+#name-squiggle-top,
+#name-squiggle-bot {
+  animation: squiggleColor 3s linear infinite;
+}
+
+#name-title {
+  font-family: var(--font-weird);
+  font-size: 42px;
+  font-weight: bold;
+  letter-spacing: 14px;
+  color: var(--color-text-main);
+  text-align: center;
+  animation: titlePulse 3s ease-in-out infinite;
+  text-shadow: 0 0 20px var(--color-pulse-a), 0 0 40px var(--color-pulse-b);
+}
+
+#name-subtitle {
+  font-family: var(--font-weird);
+  font-size: 11px;
+  letter-spacing: 5px;
+  color: var(--color-text-dim);
+  text-align: center;
+  animation: labelWobble 2.5s ease-in-out infinite;
+}
+
+#name-input-wrap {
+  width: 320px;
+  position: relative;
+}
+
+#name-input-svg {
+  width: 100%;
+  overflow: visible;
+  display: block;
+}
+
+#name-input-squiggle-top { animation: squiggleColor 2s linear infinite; }
+#name-input-squiggle-bot { animation: squiggleColor 2s linear infinite reverse; }
+
+#name-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-pulse-a);
+  outline: none;
+  font-family: var(--font-weird);
+  font-size: 18px;
+  letter-spacing: 6px;
+  color: var(--color-text-main);
+  text-align: center;
+  text-transform: uppercase;
+  padding: 10px 0;
+  caret-color: var(--color-pulse-b);
+  animation: inputGlow 2s ease-in-out infinite;
+}
+
+#name-input::placeholder {
+  color: var(--color-text-dim);
+  letter-spacing: 4px;
+  font-size: 12px;
+}
+
+#name-enter-btn {
+  padding: 14px 48px;
+  font-family: var(--font-weird);
+  font-size: 12px;
+  letter-spacing: 6px;
+  color: var(--color-text-main);
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: none;
+  text-transform: uppercase;
+  position: relative;
+  animation: resetPulse 2s ease-in-out infinite;
+}
+
+#name-enter-btn::before,
+#name-enter-btn::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--color-pulse-a),
+    var(--color-pulse-b),
+    var(--color-pulse-c)
+  );
+}
+
+#name-enter-btn::before { top: 0; }
+#name-enter-btn::after  { bottom: 0; }
+
+#name-enter-btn:hover {
+  color: var(--color-pulse-b);
+  text-shadow: 0 0 12px var(--color-pulse-b), 0 0 24px var(--color-pulse-a);
+}
+
+#name-warning {
+  font-family: var(--font-weird);
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: var(--color-crimson);
+  text-align: center;
+  animation: timerFlicker 4s step-end infinite;
 }
 
 /* ----- Keyframe Animations --------------------------------- */
@@ -235,10 +538,15 @@ html, body {
   100% { stroke: var(--color-pulse-a); }
 }
 
+@keyframes squiggleShift {
+  0%   { background-position: 0% 50%;   }
+  100% { background-position: 100% 50%; }
+}
+
 @keyframes labelWobble {
-  0%, 100% { transform: translateX(0px);   color: var(--color-text-dim); }
-  25%       { transform: translateX(-2px);  color: var(--color-pulse-a);  }
-  75%       { transform: translateX(2px);   color: var(--color-sickly);   }
+  0%, 100% { transform: translateX(0px);  color: var(--color-text-dim); }
+  25%       { transform: translateX(-2px); color: var(--color-pulse-a);  }
+  75%       { transform: translateX(2px);  color: var(--color-sickly);   }
 }
 
 @keyframes timerFlicker {
@@ -249,22 +557,35 @@ html, body {
 }
 
 @keyframes whisperIn {
-  0%   { opacity: 0;   transform: translate(-50%, -50%) scale(0.8); filter: blur(8px);  }
-  20%  { opacity: 1;   transform: translate(-50%, -50%) scale(1.05); filter: blur(0px); }
-  70%  { opacity: 1;   transform: translate(-50%, -50%) scale(1);    filter: blur(0px); }
-  100% { opacity: 0;   transform: translate(-50%, -50%) scale(1.2);  filter: blur(6px); }
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.8); filter: blur(8px);  }
+  20%  { opacity: 1; transform: translate(-50%, -50%) scale(1.05); filter: blur(0px); }
+  70%  { opacity: 1; transform: translate(-50%, -50%) scale(1);    filter: blur(0px); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.2);  filter: blur(6px); }
 }
 
 @keyframes breakPulse {
-  0%, 100% { fill: var(--color-pulse-c); transform: scale(1);    }
-  50%       { fill: var(--color-pulse-a); transform: scale(1.04); }
+  0%, 100% { fill: var(--color-pulse-c); }
+  50%       { fill: var(--color-pulse-a); }
 }
 
-/* ----- Glitch Filter (inline SVG filter) ------------------- */
-.glitch-filter {
-  position: absolute;
-  width: 0;
-  height: 0;
+@keyframes resetPulse {
+  0%, 100% { opacity: 1;   text-shadow: 0 0 8px var(--color-pulse-a);  }
+  50%       { opacity: 0.7; text-shadow: 0 0 20px var(--color-pulse-b); }
+}
+
+@keyframes thumbPulse {
+  0%, 100% { box-shadow: 0 0 10px var(--color-pulse-c), 0 0 20px var(--color-pulse-a); }
+  50%       { box-shadow: 0 0 20px var(--color-pulse-b), 0 0 40px var(--color-pulse-c); }
+}
+
+@keyframes inputGlow {
+  0%, 100% { border-bottom-color: var(--color-pulse-a); box-shadow: 0 2px 8px var(--color-pulse-a);  }
+  50%       { border-bottom-color: var(--color-pulse-b); box-shadow: 0 2px 16px var(--color-pulse-b); }
+}
+
+@keyframes secretFlash {
+  0%   { color: var(--color-pulse-c); transform: scale(1.3); }
+  100% { color: var(--color-text-dim); transform: scale(1);  }
 }
 
 /* ----- Scrollbar Hidden ------------------------------------ */
