@@ -1,0 +1,271 @@
+/* ============================================================
+   THE MIND — style.css
+   ============================================================ */
+
+/* ----- Reset & Root ---------------------------------------- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-void:        #050008;
+  --color-pulse-a:     #7b00ff;
+  --color-pulse-b:     #00ffaa;
+  --color-pulse-c:     #ff003c;
+  --color-bile:        #aaff00;
+  --color-crimson:     #8b0000;
+  --color-sickly:      #4dff91;
+  --color-text-main:   #e0d0ff;
+  --color-text-dim:    #5a3a7a;
+  --color-sanity-full: #00ffaa;
+  --color-sanity-mid:  #ffaa00;
+  --color-sanity-low:  #ff003c;
+  --font-weird:        'Courier New', Courier, monospace;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--color-void);
+  cursor: none;
+}
+
+/* ----- Babylon Canvas -------------------------------------- */
+#renderCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+  touch-action: none;
+}
+
+/* ----- Dragon Cursor Canvas -------------------------------- */
+#cursorCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* ----- UI Overlay ------------------------------------------ */
+#ui-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  pointer-events: none;
+  font-family: var(--font-weird);
+}
+
+/* ----- Title Block ----------------------------------------- */
+#title-block {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+}
+
+#title-svg {
+  width: 100%;
+  overflow: visible;
+}
+
+#title-text {
+  font-family: var(--font-weird);
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 10px;
+  fill: var(--color-text-main);
+  text-shadow: none;
+  animation: titlePulse 3s ease-in-out infinite;
+}
+
+#title-squiggle-top,
+#title-squiggle-bot {
+  animation: squiggleColor 4s linear infinite;
+}
+
+/* ----- Sanity Block ---------------------------------------- */
+#sanity-block {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 220px;
+}
+
+#sanity-label {
+  font-family: var(--font-weird);
+  font-size: 11px;
+  letter-spacing: 6px;
+  color: var(--color-text-dim);
+  margin-bottom: 4px;
+  animation: labelWobble 2.5s ease-in-out infinite;
+}
+
+#sanity-svg {
+  width: 100%;
+  overflow: visible;
+}
+
+#sanity-fill {
+  transition: stroke 0.8s ease;
+  stroke: var(--color-sanity-full);
+}
+
+#sanity-squiggle {
+  animation: squiggleColor 3s linear infinite alternate;
+}
+
+/* ----- Timer Block ----------------------------------------- */
+#timer-block {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 180px;
+}
+
+#timer-svg {
+  width: 100%;
+  overflow: visible;
+}
+
+#timer-text {
+  font-family: var(--font-weird);
+  font-size: 15px;
+  letter-spacing: 4px;
+  fill: var(--color-text-dim);
+  animation: timerFlicker 5s step-end infinite;
+}
+
+#timer-squiggle {
+  animation: squiggleColor 3.5s linear infinite alternate-reverse;
+}
+
+/* ----- Whisper Text ---------------------------------------- */
+#whisper-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-weird);
+  font-size: 22px;
+  letter-spacing: 8px;
+  color: var(--color-pulse-c);
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  white-space: nowrap;
+  text-transform: uppercase;
+  animation: none;
+  z-index: 60;
+  filter: blur(0px);
+}
+
+#whisper-text.visible {
+  animation: whisperIn 4s ease forwards;
+}
+
+/* ----- Mind Break Overlay ---------------------------------- */
+#mind-break-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5, 0, 8, 0.0);
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0;
+  transition: background 1.5s ease, opacity 1.5s ease;
+}
+
+#mind-break-overlay.active {
+  opacity: 1;
+  background: rgba(5, 0, 8, 0.85);
+  pointer-events: all;
+}
+
+#break-svg {
+  width: 600px;
+  max-width: 90vw;
+  overflow: visible;
+}
+
+#break-text {
+  font-family: var(--font-weird);
+  font-size: 52px;
+  font-weight: bold;
+  letter-spacing: 14px;
+  fill: var(--color-pulse-c);
+  filter: url(#glitch);
+  animation: breakPulse 0.8s ease-in-out infinite;
+}
+
+#break-squiggle-a,
+#break-squiggle-b {
+  animation: squiggleColor 1.2s linear infinite;
+}
+
+/* ----- Keyframe Animations --------------------------------- */
+@keyframes titlePulse {
+  0%, 100% { fill: var(--color-text-main); letter-spacing: 10px; }
+  50%       { fill: var(--color-pulse-b);  letter-spacing: 13px; }
+}
+
+@keyframes squiggleColor {
+  0%   { stroke: var(--color-pulse-a); }
+  25%  { stroke: var(--color-bile);    }
+  50%  { stroke: var(--color-pulse-b); }
+  75%  { stroke: var(--color-pulse-c); }
+  100% { stroke: var(--color-pulse-a); }
+}
+
+@keyframes labelWobble {
+  0%, 100% { transform: translateX(0px);   color: var(--color-text-dim); }
+  25%       { transform: translateX(-2px);  color: var(--color-pulse-a);  }
+  75%       { transform: translateX(2px);   color: var(--color-sickly);   }
+}
+
+@keyframes timerFlicker {
+  0%, 90%, 100% { opacity: 1;   }
+  92%            { opacity: 0.2; }
+  95%            { opacity: 1;   }
+  97%            { opacity: 0.1; }
+}
+
+@keyframes whisperIn {
+  0%   { opacity: 0;   transform: translate(-50%, -50%) scale(0.8); filter: blur(8px);  }
+  20%  { opacity: 1;   transform: translate(-50%, -50%) scale(1.05); filter: blur(0px); }
+  70%  { opacity: 1;   transform: translate(-50%, -50%) scale(1);    filter: blur(0px); }
+  100% { opacity: 0;   transform: translate(-50%, -50%) scale(1.2);  filter: blur(6px); }
+}
+
+@keyframes breakPulse {
+  0%, 100% { fill: var(--color-pulse-c); transform: scale(1);    }
+  50%       { fill: var(--color-pulse-a); transform: scale(1.04); }
+}
+
+/* ----- Glitch Filter (inline SVG filter) ------------------- */
+.glitch-filter {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+/* ----- Scrollbar Hidden ------------------------------------ */
+::-webkit-scrollbar { display: none; }
