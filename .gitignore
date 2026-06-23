@@ -1,0 +1,105 @@
+# ============================================================
+# THE MIND — Security-Rich .gitignore
+# ============================================================
+
+# ----- Environment & Secrets --------------------------------
+.env
+.env.*
+.env.local
+.env.development
+.env.production
+.env.staging
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.pfx
+*.secret
+secrets/
+config/secrets.*
+
+# ----- YubiKey & Hardware Security Keys ---------------------
+*.ykp
+*.yubikey
+yubikey-config/
+yk-config.*
+yubico/
+u2f_keys
+.u2f/
+fido2/
+*.slot
+gpg-agent-yubikey.conf
+scdaemon.conf
+pubring.gpg
+secring.gpg
+trustdb.gpg
+*.gpg
+*.asc
+*.kbx
+.gnupg/
+
+# ----- API Keys & Tokens ------------------------------------
+*.token
+*.apikey
+api_keys.*
+auth_config.*
+oauth_credentials.*
+service_account*.json
+firebase*.json
+gcp_credentials.*
+
+# ----- Node / JS --------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+.yarn/
+dist/
+build/
+.cache/
+.parcel-cache/
+
+# ----- OS Generated -----------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ----- VS Code ----------------------------------------------
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+*.code-workspace
+
+# ----- Logs & Debugging -------------------------------------
+logs/
+*.log
+*.pid
+*.seed
+*.pid.lock
+crash.log
+error.log
+
+# ----- Backup & Temp Files ----------------------------------
+*.bak
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# ----- SSH --------------------------------------------------
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+known_hosts
+authorized_keys
+.ssh/

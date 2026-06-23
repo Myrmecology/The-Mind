@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>THE MIND</title>
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Babylon.js CDN -->
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/proceduralTexturesLibrary/babylonjs.proceduralTextures.min.js"></script>
+  </head>
+  <body>
+
+    <!-- Custom Dragon Cursor -->
+    <canvas id="cursorCanvas"></canvas>
+
+    <!-- Main Babylon Canvas -->
+    <canvas id="renderCanvas"></canvas>
+
+    <!-- UI Overlay -->
+    <div id="ui-overlay">
+
+      <!-- Title -->
+      <div id="title-block">
+        <svg id="title-svg" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg">
+          <path id="title-squiggle-top" d="" fill="none" stroke-width="1.5"/>
+          <path id="title-squiggle-bot" d="" fill="none" stroke-width="1.5"/>
+          <text id="title-text" x="200" y="52" text-anchor="middle">THE MIND</text>
+        </svg>
+      </div>
+
+      <!-- Sanity Meter -->
+      <div id="sanity-block">
+        <div id="sanity-label">SANITY</div>
+        <svg id="sanity-svg" viewBox="0 0 220 40" xmlns="http://www.w3.org/2000/svg">
+          <path id="sanity-track" d="" fill="none" stroke="#2a0a2a" stroke-width="6"/>
+          <path id="sanity-fill"  d="" fill="none" stroke-width="6"/>
+          <path id="sanity-squiggle" d="" fill="none" stroke-width="1"/>
+        </svg>
+      </div>
+
+      <!-- Timer -->
+      <div id="timer-block">
+        <svg id="timer-svg" viewBox="0 0 180 36" xmlns="http://www.w3.org/2000/svg">
+          <path id="timer-squiggle" d="" fill="none" stroke-width="1"/>
+          <text id="timer-text" x="90" y="24" text-anchor="middle">00:00</text>
+        </svg>
+      </div>
+
+      <!-- Whisper Text -->
+      <div id="whisper-text"></div>
+
+      <!-- Mind Break Overlay -->
+      <div id="mind-break-overlay">
+        <svg id="break-svg" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+          <path id="break-squiggle-a" d="" fill="none" stroke-width="2"/>
+          <path id="break-squiggle-b" d="" fill="none" stroke-width="2"/>
+          <text id="break-text" x="300" y="110" text-anchor="middle">MIND BREAK</text>
+        </svg>
+      </div>
+
+    </div><!-- /ui-overlay -->
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
